@@ -1,0 +1,21 @@
+{
+  "name": "unit-test-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start karma.conf.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "jasmine-core": "^2.2.0",
+    "karma": "^6.1.0",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.5"
+  },
+  "dependencies": {
+    "cypress": "^9.5.2"
+  }
+}

@@ -271,6 +271,15 @@ context('Calculator', () => {
       cy.get('#display').should('have.value', '3.5');
   });
 
+   it('should be able to evaluate a double addition sign', () => {
+       cy.get('#one').click();
+       cy.get('#add').click();
+       cy.get('#add').click();
+       cy.get('#four').click();
+       cy.get('#eq').click();
+       cy.get('#display').should('have.value', '5');
+   });
+
   //Subtraction Tests
   it('should be able to subtract two positive numbers', () => {
       cy.get('#one').click();
@@ -477,7 +486,7 @@ context('Calculator', () => {
       cy.get('#display').should('have.value', 'Infinity');
   });
 
-  it('should be able evaluate0 divided by a number', () => {
+  it('should be able evaluate 0 divided by a number', () => {
       cy.get('#zero').click();
       cy.get('#div').click();
       cy.get('#two').click();
@@ -513,7 +522,7 @@ context('Calculator', () => {
             cy.get('#zero').click();
         }
       cy.get('#eq').click();
-      cy.get('#display').should('have.value', '-12000000000');     
+      cy.get('#display').should('have.value', '3');     
   });
 
   it('should be able to divide a previous answer by a number', () => {
@@ -544,7 +553,6 @@ context('Calculator', () => {
       cy.get('#eq').click();
       cy.get('#display').should('have.value', '2.5');
   });
-
 
   //Multiplication Tests
   it('should be able to multiply two positive numbers', () => {
@@ -610,7 +618,7 @@ context('Calculator', () => {
       cy.get('#display').should('have.value', '270000000000000000');     
   });
 
-  it('should be able to divide two large negative numbers', () => {
+  it('should be able to multiply two large negative numbers', () => {
       cy.get('#minus').click();
       cy.get('#nine').click();
       for (let z=0; z<8; z++){
@@ -713,7 +721,35 @@ context('Calculator', () => {
     cy.get('#display').should('have.value', '-8911111110');
   });
 
+  //All double signs & strange input 
+  it('should not be able to evaluate a double multiplication sign', () =>{
+    cy.get('#six').click();
+    cy.get('#times').click();
+    cy.get('#times').click();
+    cy.get('#six').click();
+    cy.get('#eq').click();
+    cy.get('#display').should('have.value', 'Err');
+  });
 
+  it('should not be able to evaluate a double division sign', () =>{
+    cy.get('#four').click();
+    cy.get('#div').click();
+    cy.get('#div').click();
+    cy.get('#five').click();
+    cy.get('#eq').click();
+    cy.get('#display').should('have.value', 'Err');
+  });
+
+  it('should not be able to evaluate a division and multiplication signs one after the other', () =>{
+      cy.get('#nine').click();
+      cy.get('#div').click();
+      cy.get('#times').click();
+      cy.get('#three').click();
+      cy.get('#eq').click();
+      cy.get('#display').should('have.value', 'Err');
+  })
+
+ 
   //Random Compound Tests
   it('should calculate the difference between the quotient of 68/2 and 7345 and then make it positive', () => {
       cy.get('#six').click();
@@ -768,6 +804,12 @@ context('Calculator', () => {
       cy.get('#sq').click();
       cy.get('#percent').click();
       cy.get('#display').should('have.value', '0.1');
+  });
+
+  it('should be able to evaluate the sqrt of 0', () => {
+      cy.get('#zero').click();
+      cy.get('#sq').click();
+      cy.get('#display').should('have.value', '0');
   });
 
 });
